@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 /**
- * Main IOTA Reference Implementation starting class
+ * Main CVT Reference Implementation starting class
  */
 public class IRI {
 
@@ -73,10 +73,10 @@ public class IRI {
             api.init();
             ixi.init(configuration.string(Configuration.DefaultConfSettings.IXI_DIR));
         } catch (final Exception e) {
-            log.error("Exception during IOTA node initialisation: ", e);
+            log.error("Exception during CVT node initialisation: ", e);
             System.exit(-1);
         }
-        log.info("IOTA Node initialised correctly.");
+        log.info("cvt Node initialised correctly.");
     }
 
     public static void validateParams(final Configuration configuration, final String[] args) throws IOException {
@@ -84,7 +84,7 @@ public class IRI {
         boolean configurationInit = configuration.init();
 
         if (args == null || (args.length < 2 && !configurationInit)) {
-            log.error("Invalid arguments list. Provide ini-file 'iota.ini' or API port number (i.e. '-p 14600').");
+            log.error("Invalid arguments list. Provide ini-file 'cvt.ini' or API port number (i.e. '-p 14600').");
             printUsage();
         }
 
@@ -169,7 +169,7 @@ public class IRI {
         String inicport = configuration.getIniValue(DefaultConfSettings.PORT.name());
         final String cport = inicport == null ? parser.getOptionValue(port) : inicport;
         if (cport == null) {
-            log.error("Invalid arguments list. Provide at least the PORT in iota.ini or with -p option");
+            log.error("Invalid arguments list. Provide at least the PORT in cvt.ini or with -p option");
             printUsage();
         } else {
             configuration.put(DefaultConfSettings.PORT, cport);
@@ -328,13 +328,13 @@ public class IRI {
     private static void shutdownHook() {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
 
-            log.info("Shutting down IOTA node, please hold tight...");
+            log.info("Shutting down CVT node, please hold tight...");
             try {
                 ixi.shutdown();
                 api.shutDown();
                 cvt.shutdown();
             } catch (final Exception e) {
-                log.error("Exception occurred shutting down IOTA node: ", e);
+                log.error("Exception occurred shutting down CVT node: ", e);
             }
         }, "Shutdown Hook"));
     }

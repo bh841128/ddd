@@ -45,14 +45,14 @@ public class IXI {
     private Path rootPath;
 
     private boolean shutdown = false;
-    private final CVT iota;
+    private final CVT cvt;
 
     public IXI() {
-        iota = null;
+    	cvt = null;
     }
 
-    public IXI(CVT iota) {
-        this.iota = iota;
+    public IXI(CVT cvt) {
+        this.cvt = cvt;
     }
 
     public void init(String rootDir) throws Exception {
@@ -249,7 +249,7 @@ public class IXI {
         Bindings bindings = scriptEngine.createBindings();
         bindings.put("API", ixiMap);
         bindings.put("IXICycle", startStop);
-        bindings.put("IOTA", iota);
+        bindings.put("CVT", cvt);
 
         ixiAPI.put(moduleName, ixiMap);
         ixiLifetime.put(moduleName, startStop);

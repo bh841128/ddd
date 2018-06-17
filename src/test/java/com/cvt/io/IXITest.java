@@ -49,9 +49,9 @@ public class IXITest {
 
         /*
         final String testJs =
-                "var Callable = Java.type(\"com.iota.iri.service.CallableRequest\");\n" +
+                "var Callable = Java.type(\"com.cvt.io.service.CallableRequest\");\n" +
                         "print(\"hello world\");\n" +
-                        "var IXIResponse = Java.type(\"com.iota.iri.service.dto.IXIResponse\");\n" +
+                        "var IXIResponse = Java.type(\"com.cvt.iri.service.dto.IXIResponse\");\n" +
                         "API.put(\"getParser\", new Callable({\n" +
                         "call: function(req) {\n" +
                         "var IntArray = Java.type(\"int[]\");\n" +
