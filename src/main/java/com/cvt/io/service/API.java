@@ -70,7 +70,7 @@ public class API {
 
     private final AtomicInteger counter = new AtomicInteger(0);
 
-    private Pattern trytesPattern = Pattern.compile("[0-9A-Za-z]*");
+    private Pattern trytesPattern = Pattern.compile("[9A-Z]*");
 
     private final static int HASH_SIZE = 81;
     private final static int TRYTES_SIZE = 2673;
@@ -936,7 +936,7 @@ public class API {
             diff = new HashMap<>();
             for (Hash tip : hashes) {
                 if (!TransactionViewModel.exists(instance.tangle, tip)) {
-                    //return ErrorResponse.create("Tip not found: " + tip.toString());
+                 //   return ErrorResponse.create("Tip not found: " + tip.toString());
                 }
               //  if (!instance.ledgerValidator.updateDiff(visitedHashes, diff, tip)) {
                    // return ErrorResponse.create("Tips are not consistent");
