@@ -131,7 +131,7 @@ public class Converter {
             if (j < 0) {
                 j += TRYTE_ALPHABET.length();
             }
-            trytes.append(TRYTE_ALPHABET.charAt(j));
+            trytes.append(TRYTE_ALPHABET.charAt(j%TRYTE_ALPHABET.length()));
         }
         return trytes.toString();
     }

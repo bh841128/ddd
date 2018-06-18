@@ -77,6 +77,8 @@ public class API {
 
     private final static long MAX_TIMESTAMP_VALUE = (3^27 - 1) / 2;
 
+    private final static long SEED_LENGTH =81;
+
     private final int minRandomWalks;
     private final int maxRandomWalks;
     private final int maxFindTxs;
@@ -295,6 +297,23 @@ public class API {
                 case "getTips": {
                     return getTipsStatement();
                 }
+                case "newAccount": {
+                	String seed = getParameterAsStringAndValidate(request,"seed", HASH_SIZE).toUpperCase();
+                	if(seed.length()!=SEED_LENGTH) {
+                		   return ErrorResponse
+                                   .create("seed is not 81.");
+                	}
+                	int a[]=new int[seed.getBytes().length*3];
+                	int j=0;
+                	for(int k=0;k<3;k++) {
+	                	for(int i=0;i<seed.getBytes().length;i++) {
+	                		a[j++]=(int)seed.getBytes()[i];
+	                	}
+                	}
+                	
+                    return newAccountStatement(a);
+                }
+                
                 case "getTransactionsToApprove": {
                     if (invalidSubtangleStatus()) {
                     //    return ErrorResponse
@@ -662,6 +681,18 @@ public class API {
 
     private synchronized AbstractResponse getTipsStatement() throws Exception {
         return GetTipsResponse.create(instance.tipsViewModel.getTips().stream().map(Hash::toString).collect(Collectors.toList()));
+    }
+    
+    private  AbstractResponse newAccountStatement(int []a) throws Exception {
+    	int ret=0;
+    	String address="";
+    	if(a.length!=243) {
+    		ret=-1;
+    	}
+    	else {
+    		address=Converter.trytes(a);
+    	}
+        return NewAccountResponse.create(address,ret);
     }
 
     public void storeTransactionStatement(final List<String> trys) throws Exception {
