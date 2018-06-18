@@ -1230,4 +1230,3 @@ public class API {
         broadcastTransactionStatement(powResult);
     }
 }
-
