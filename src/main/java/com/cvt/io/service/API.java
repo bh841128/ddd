@@ -1175,7 +1175,7 @@ public class API {
 
         log.info("find  two tips for address hash:"+sendAddress+"  and hash:"+toAddress+" ......."); 
         Thread.sleep(1000);
-    	
+        log.info("tips founded!!!!");
     }
     //only available on testnet
     private synchronized void storeMessageStatement(final String address, final String message) throws Exception {

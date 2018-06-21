@@ -5,7 +5,7 @@
 
     <groupId>com.cvt</groupId>
     <artifactId>io</artifactId>
-    <version>1.4.2.4</version>
+    <version>1.0.0.0</version>
 
     <name>CVT</name>
     <description>CVT Reference Implementation</description>
