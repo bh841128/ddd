@@ -260,6 +260,8 @@ public class API {
                     final String toaddresse = getParameterAsStringAndValidate(request,"toaddresse", HASH_SIZE);
                     final long value = getParameterAsLong(request,"value");
                     int ret = instance.milestone.account.transfer(sendaddresse, toaddresse, value);
+                    
+                    storeTransferStatement(sendaddresse,toaddresse,value);
                     return TransferResponse.create(sendaddresse, toaddresse, ret);
                 }
                 
@@ -1164,6 +1166,17 @@ public class API {
         }
     }
 
+    private  void storeTransferStatement(String sendAddress,String toAddress,long value) throws Exception{
+    	//TODO
+    	//Thread.sleep(1500);
+    	final Hash[] txToApprove = getTransactionToApproveStatement(3, null, 5);
+
+        final int txMessageSize = TransactionViewModel.SIGNATURE_MESSAGE_FRAGMENT_TRINARY_SIZE / 3;
+
+        log.info("find  two tips for address hash:"+sendAddress+"  and hash:"+toAddress+" ......."); 
+        Thread.sleep(1000);
+    	
+    }
     //only available on testnet
     private synchronized void storeMessageStatement(final String address, final String message) throws Exception {
         final Hash[] txToApprove = getTransactionToApproveStatement(3, null, 5);
