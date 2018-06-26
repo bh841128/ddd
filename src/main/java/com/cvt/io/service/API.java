@@ -179,7 +179,7 @@ public class API {
         final String body = IOUtils.toString(cis, StandardCharsets.UTF_8);
         final AbstractResponse response;
 
-        if (!exchange.getRequestHeaders().contains("X-IOTA-API-Version")) {
+        if (!exchange.getRequestHeaders().contains("X-CVT-API-Version")) {
             response = ErrorResponse.create("Invalid API Version");
         } else if (body.length() > maxBodyLength) {
             response = ErrorResponse.create("Request too long");
